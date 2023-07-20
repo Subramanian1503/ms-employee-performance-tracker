@@ -1,0 +1,14 @@
+{
+  "name": "ms-employee-performance-tracker",
+  "version": "1.0.0",
+  "description": "Employee performance tracker application created using node, express and EJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Subramanian Palanivel",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
