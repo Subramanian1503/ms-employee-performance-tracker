@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
+require("dotenv").config();
 
 // Defining the mongoose connect url with host ip and database name
-mongoose.connect("mongodb://127.0.0.1:27017/employee_performance_tracker_db");
+mongoose.connect(process.env.DB_CONNECT_URL);
 
 // Getting the created connection using the mongo URL
 let connection = mongoose.connection;
-
 
 // Defining the error messages for different connection states
 connection.on(
