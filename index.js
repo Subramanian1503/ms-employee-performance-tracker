@@ -20,6 +20,9 @@ const databaseConfig = require("./config/mongoose");
 const expressLayout = require("express-ejs-layouts");
 application.use(expressLayout);
 
+// Setting up the static file directory
+application.use(express.static("./assets"));
+
 // Setup the view engine and view folder
 application.set("view engine", "ejs");
 application.set("views", "./view");
@@ -38,7 +41,7 @@ application.use(
     saveUninitialized: false,
     resave: false,
     cookie: {
-      maxAge: process.env.SESSION_EXPIRY_AGE,
+      maxAge: parseInt(process.env.SESSION_EXPIRY_AGE),
     },
     store: MongoStore.create({
       mongoUrl: process.env.SESSION_STORE_DB,
