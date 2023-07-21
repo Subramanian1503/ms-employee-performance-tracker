@@ -2,17 +2,48 @@
 
 <head>
   <!-- style sheets -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css" />
   <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/sign_in.css">
   <link rel="stylesheet" href="/css/sign_up.css">
+
+  <!-- required scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 </head>
 
 <body>
   <%- include('_header') %>
-  <%- body -%>
-  <!-- <%- include('_footer')%> -->
+    <%- body -%>
+      <!-- <%- include('_footer')%> -->
 
-  <!-- script elements -->
+      <!-- script elements -->
+      <script>
+    <% console.log("***" + JSON.stringify(locals) + "***") %>
+    <% if (flash) { %>
+      <% if (flash.success && flash.success.length > 0) { %>
+
+            new Noty({
+              theme: "relax",
+              text: "<%= flash.success %>",
+              type: "success",
+              layout: "topRight",
+              timeout: 1500,
+            }).show();
+    <% } %>
+  
+    <% console.log(`${flash.error}`) %>
+    <% if (flash.error && flash.error.length > 0) { %>
+            new Noty({
+              theme: "mint",
+              text: "<%= flash.error%>",
+              type: "error",
+              layout: "topRight",
+              timeout: 1500,
+            }).show();
+    <% } %>
+      <% }%>  
+      </script>
 </body>
 
 </html>

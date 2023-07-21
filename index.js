@@ -27,6 +27,10 @@ application.use(express.static("./assets"));
 application.set("view engine", "ejs");
 application.set("views", "./view");
 
+// Setting up the extract style and script from layout property
+application.set("layout extractStyles", true);
+application.set("layout extractScripts", true);
+
 // Initializing the authentication configuration with express application
 const passport_local = require("./config/passport-local");
 const passport = require("passport");
@@ -55,6 +59,12 @@ application.use(passport.session());
 
 // Use middleware to set authentication user information in the response so that views can use that
 application.use(passport.setAuthenticatedUserInfo);
+
+// Initialize the express flash and setup the middleware to pass the message to view
+const flash = require("connect-flash");
+const customMiddleware = require("./config/middleware");
+application.use(flash());
+application.use(customMiddleware.setFlashInformation);
 
 // Defining the main router with the express application
 const main_router = require("./router");

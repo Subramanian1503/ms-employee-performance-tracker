@@ -4,19 +4,20 @@ const User = require("../../model/user");
 module.exports.createUser = async (request, response) => {
   try {
     // Get required user inputs from request
+    console.log(JSON.stringify(request.body));
     const {
       firstName,
       lastName,
       email,
       password,
-      confirmPassword,
+      confirm_password,
       type,
       profilePicture,
       dateOfJoining,
     } = request.body;
 
     // Validate the required inputs for user creation
-    if (password === confirmPassword) {
+    if (password === confirm_password) {
       // Create user in DB
       const created_user = await User.create({
         firstName: firstName,
@@ -28,25 +29,24 @@ module.exports.createUser = async (request, response) => {
         dateOfJoining: dateOfJoining,
       });
 
-      // Return created user response
-      return response.status(200).json({
-        message: "Create user successfull",
-        data: {
-          created_user,
-        },
-      });
+      // Sending flash noty for user
+      request.flash("success", "User created successfully");
+
+      // Redirect to the view page
+      return response.redirect("/user/signIn");
     }
 
-    return response.status(400).json({
-      message: "Password and confirm password doesn't match",
-      data: {},
-    });
+    // Sending flash noty for user
+    request.flash("error", "Password and Confirm password mismatch");
+
+    return response.redirect("back");
   } catch (error) {
     console.log(`Error occured while trying to create user: ${error}`);
-    return response.status(500).json({
-      message: `Error occured while trying to create user: ${error}`,
-      data: {},
-    });
+
+    // Sending flash noty for user
+    request.flash("error", "Some error occured while trying to create user");
+
+    return response.redirect("back");
   }
 };
 
@@ -57,3 +57,43 @@ module.exports.createUser = async (request, response) => {
 // Define method to update user
 
 // Define method to delete user
+
+// Define method to create session
+module.exports.create_session = (request, response) => {
+  try {
+
+    if (request.user.type === "ADMIN") {
+
+      // Sending flash noty for user
+      request.flash("success", "User sign in successfully");
+
+      // If user is a admin then view admin page
+      return response.render("_admin");
+    } else {
+
+      // Sending flash noty for user
+      request.flash("success", "User sign in successfully");
+
+      // If user is a employee then view employee page
+      return response.render("_employee");
+    }
+  } catch (error) {
+    console.log(`Error occured while trying to create user: ${error}`);
+
+    // Sending flash noty for user
+    request.flash("error", "Some error occured while trying to create user");
+
+    return response.redirect("back");
+  }
+};
+
+// Logging out from the session
+module.exports.destroySession = (request, response) => {
+  request.logout((error) => {
+  });
+
+  // Sending flash noty for user
+  request.flash("success", "User logged out successfully");
+
+  return response.redirect("/user/signIn");
+};

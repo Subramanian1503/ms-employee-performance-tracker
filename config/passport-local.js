@@ -10,28 +10,31 @@ passport.use(
       usernameField: "email",
       passReqToCallback: true,
     },
-    (request, email, password, done) => {
+    async (request, email, password, done) => {
       // Finding the user whether present in DB using email sent as input
-      User.findOne({ email: email })
-        .then((user) => {
-          // If the user is present and password provided by the user matches, then allow
-          if (user && user.password === password) {
-            console.log(`*** Login successful ***`);
-            return done(null, user);
-          } else {
-            // If not then done allow
-            console.log(`*** User details does not match ***`);
-            return done(null, false);
-          }
-        })
-        .catch((error) => {
-          if (error) {
-            console.log(
-              `*** Error occured while trying to login in user: ${error} ***`
-            );
-            return done(error);
-          }
-        });
+      try {
+        const user = await User.findOne({ email: email });
+
+        // If the user is present and password provided by the user matches, then allow
+        if (user && user.password === password) {
+          console.log(`*** Login successful ***`);
+
+          // Sending flash noty for user
+          request.flash("success", "User sign in successfully");
+
+          return done(null, user);
+        } else {
+          // If not then done allow
+          console.log(`*** User details does not match ***`);
+          return done(null, false);
+        }
+      } catch (error) {
+        if (error) {
+          console.log(
+            `*** Error occured while trying to login in user: ${error} ***`);
+          return done(error);
+        }
+      }
     }
   )
 );
@@ -42,14 +45,14 @@ passport.serializeUser((user, done) => {
 });
 
 // Tell express that how the stored session information can be converted into user
-passport.deserializeUser((userId, done) => {
-  User.findById(userId)
-    .then((user) => {
-      return done(null, user);
-    })
-    .catch((error) => {
-      return done(error);
-    });
+passport.deserializeUser(async (userId, done) => {
+  try {
+    const user = await User.findById(userId);
+    return done(null, user);
+
+  } catch (error) {
+    return done(error);
+  }
 });
 
 // Method implementation to check whether the request is authenticated and if not redirect back to user sign in page
@@ -62,9 +65,9 @@ passport.checkAuthentication = (request, response, next) => {
 
 // Method implementation to set the user in the current function response
 passport.setAuthenticatedUserInfo = (request, response, next) => {
-  if(request.isAuthenticated()){
+  if (request.isAuthenticated()) {
     // Setting the user information in the request of the controller action
     response.locals.user = request.user;
   }
   next();
-}
+};

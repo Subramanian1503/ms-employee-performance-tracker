@@ -25,11 +25,11 @@
 
 #logout_button {
   border: 1px solid white;
-  height: 30px;
+  height: 20px;
   width: 60px;
   border-radius: 10px;
   padding-top: 4px;
-  padding-left: 4px;
+  padding-left: 7px;
   background-color: darkgray;
 }
 
