@@ -1,0 +1,320 @@
+#page_container {
+    border: 2px solid black;
+    height: 684px;
+    width: 1516px;
+}
+
+#user_information-container {
+    border: 2px solid black;
+    height: 150px;
+    width: 1510px;
+    box-shadow: 5px 5px gray;
+}
+
+#page_information_container {
+    border: 2px solid black;
+    height: 510px;
+    width: 1500px;
+    box-shadow: 5px 5px gray;
+    padding: 10px 5px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#employee_profile_pic {
+    border-radius: 10px;
+    /* border: 2px solid black; */
+}
+
+#close_cross {
+    position: fixed;
+    top: 180px;
+    left: 930px;
+    cursor: pointer;
+}
+
+#close_cross_for_employee_card {
+    position: fixed;
+    top: 180px;
+    left: 930px;
+    cursor: pointer;
+}
+
+#close_cross_for_performance_review {
+    position: fixed;
+    top: 180px;
+    left: 930px;
+    cursor: pointer;
+}
+
+#close_cross_for_assign_performance_review {
+    position: fixed;
+    top: 180px;
+    left: 930px;
+    cursor: pointer;
+}
+
+#employee_view_card_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* border: 2px solid black; */
+    font-size: 20px;
+    font-family: Inter-Bold, Helvetica Neue, Helvetica, Roboto, Arial, sans-serif;
+    letter-spacing: 0px;
+}
+
+#access_info_section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#employee_delete_button {
+    text-decoration: none;
+}
+
+#employee_delete_button button {
+    height: 30px;
+    width: 100px;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: red;
+    color: white;
+    font-size: 15px;
+    font-family: Inter-Bold, Helvetica Neue, Helvetica, Roboto, Arial, sans-serif;
+    letter-spacing: 0px;
+}
+
+/* utility classes */
+
+.close_cross_for_update_form {
+    position: fixed;
+    top: 180px;
+    left: 930px;
+    cursor: pointer;
+}
+
+.employee_update_button {
+    text-decoration: none;
+}
+
+.employee_update_button button {
+    height: 30px;
+    width: 100px;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: rgb(72, 72, 237);
+    color: white;
+    font-size: 15px;
+    font-family: Inter-Bold, Helvetica Neue, Helvetica, Roboto, Arial, sans-serif;
+    letter-spacing: 0px;
+}
+
+.employee_info {
+    height: 100px;
+    width: 200px;
+    /* border: 2px solid black; */
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: Inter-Bold, Helvetica Neue, Helvetica, Roboto, Arial, sans-serif;
+    letter-spacing: 0px;
+    background-color: white;
+    line-break: anywhere;
+    padding-top: 5px;
+}
+
+.create_button {
+    height: 50px;
+    width: 150px;
+    border-radius: 10px;
+    background-color: rgb(3, 116, 56);
+}
+
+.create_pr_button {
+    height: 50px;
+    width: 170px;
+    border-radius: 10px;
+    background-color: rgb(3, 116, 56);
+}
+
+.modal_container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    /* border: 2px solid black; */
+}
+
+.detailed_info {
+    display: none;
+}
+
+.modal {
+    background-color: #fefefe;
+    position: fixed;
+    left: 500px;
+    top: 150px;
+    width: 30%;
+    border: 2px solid black;
+    padding: 10px 10px;
+    /* background-color: white; */
+    border-radius: 20px;
+}
+
+.form_header {
+    height: 100px;
+    /* border: 2px solid black; */
+    font-size: 25px;
+    font-family: Inter-Bold, Helvetica Neue, Helvetica, Roboto, Arial, sans-serif;
+    letter-spacing: 0px;
+    margin-bottom: 10px;
+}
+
+.create_employee_form_input {
+    /* border: 2px solid black; */
+    display: flex;
+    flex-direction: column;
+}
+
+.side_by_side_section {
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-left: 5px;
+    padding-right: 10px;
+    /* border: 2px solid black; */
+}
+
+.left_side_input {
+    height: 50px;
+    width: 40%;
+    border-radius: 10px;
+    padding-left: 5px;
+    background-color: rgb(224, 222, 222);
+}
+
+.employee_card {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.right_side_input {
+    height: 50px;
+    width: 40%;
+    border-radius: 10px;
+    padding-left: 5px;
+    background-color: rgb(224, 222, 222);
+}
+
+.plain_input {
+    border-radius: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 50px;
+    padding-left: 5px;
+    background-color: rgb(224, 222, 222);
+}
+
+.check_box_for_admin_enable {
+    padding-top: 10px;
+}
+
+.list_container {
+    border: 2px solid black;
+    height: fit-content;
+    width: 450px;
+    box-shadow: 5px 5px gray;
+    padding: 10px 5px;
+    background-color: rgb(211, 208, 208);
+}
+
+.list_container_header {
+    border: 2px solid black;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-left: 5px;
+    padding-right: 10px;
+    background-color: white;
+}
+
+.list_header_information {
+    /* border: 2px solid black; */
+    height: 80px;
+    width: 60%;
+    font-size: 25px;
+    font-family: Inter-Bold, Helvetica Neue, Helvetica, Roboto, Arial, sans-serif;
+    letter-spacing: 0px;
+}
+
+.text_content_center {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.add_element_to_list {
+    /* border: 2px solid black; */
+    height: 80px;
+    width: 100%;
+}
+
+.employees_list_element {
+    list-style: none;
+    border: 2px solid black;
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.review_metadata_list_element {
+    height: 100px;
+    list-style: none;
+    border: 2px solid black;
+    margin-top: 5px;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.performance_review_metadata_user_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 18px;
+    font-family: Inter-Bold, Helvetica Neue, Helvetica, Roboto, Arial, sans-serif;
+    letter-spacing: 0px;
+}
+
+.page_header {
+    font-size: 25px;
+    font-family: Inter-Bold, Helvetica Neue, Helvetica, Roboto, Arial, sans-serif;
+    letter-spacing: 0px;
+}
+
+/* Dropdown Button */
+.dropbtn {
+    background-color: #04aa6d;
+    color: white;
+    padding: 16px;
+    font-size: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}

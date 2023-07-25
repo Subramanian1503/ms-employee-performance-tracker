@@ -1,0 +1,14 @@
+#view_performance_review_link {
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+    color: black;
+    height: 100px;
+}
+
+#close_cross_for_performance_review_employee {
+    position: fixed;
+    top: 180px;
+    left: 930px;
+    cursor: pointer;
+}

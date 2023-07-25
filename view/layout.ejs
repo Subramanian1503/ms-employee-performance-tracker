@@ -6,7 +6,8 @@
   <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/sign_in.css">
   <link rel="stylesheet" href="/css/sign_up.css">
-
+  <link rel="stylesheet" href="/css/admin.css">
+  <link rel="stylesheet" href="/css/employee.css">
   <!-- required scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
@@ -19,10 +20,8 @@
 
       <!-- script elements -->
       <script>
-    <% console.log("***" + JSON.stringify(locals) + "***") %>
     <% if (flash) { %>
       <% if (flash.success && flash.success.length > 0) { %>
-
             new Noty({
               theme: "relax",
               text: "<%= flash.success %>",
@@ -31,8 +30,8 @@
               timeout: 1500,
             }).show();
     <% } %>
-  
-    <% console.log(`${flash.error}`) %>
+
+    // <% console.log(`${flash.error}`) %>
     <% if (flash.error && flash.error.length > 0) { %>
             new Noty({
               theme: "mint",
@@ -44,6 +43,8 @@
     <% } %>
       <% }%>  
       </script>
+      <script src="/script/admin.js"></script>
+      <script src="/script/employee.js"></script>
 </body>
 
 </html>

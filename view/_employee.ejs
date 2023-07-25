@@ -1,3 +1,185 @@
-<div>
-    <h5>Employee View</h5>
-</div>
+<section id="page_container">
+
+    <!-- page header -->
+    <section id="user_information-container" class="page_header text_content_center">
+        <h1>Hi, <%= locals.user.firstName %>
+                <%= locals.user.lastName%>, you are an employee</h1>
+    </section>
+
+    <!-- page content section -->
+    <section id="page_information_container">
+
+        <!-- Performance review list -->
+        <section id="performance_review_list" class="list_container">
+
+            <!-- performance_review_list header -->
+            <header id="performance_review_list_header" class="list_container_header">
+
+                <!-- performance_review header inforation -->
+                <div class="list_header_information text_content_center">
+                    Performance_reviews to review
+                </div>
+
+            </header>
+
+            <!-- performance review metadata list -->
+            <% if(need_to_review_list) { %>
+                <ul id="performance_review_metadata_list" class="list_elements">
+                    <% for (let index=0; index < need_to_review_list.length; index++) { %>
+                        <li id="performance_review_metadata_info-container-<%= need_to_review_list[index]._id %>"
+                            class="review_metadata_list_element"
+                            data-review_metadata-id="<%= need_to_review_list[index]._id %>">
+
+                            <!-- performance review metadata date inforamtion -->
+                            <!-- performance review metadata user inforamtion -->
+
+                            <a href="/performance_review/<%= need_to_review_list[index]._id %>"
+                                data-review-metadata-id="<%= need_to_review_list[index]._id %>"
+                                id="view_performance_review_link">
+
+                                <div id="performance_review_metadata_user_info-<%= need_to_review_list[index]._id %>"
+                                    class="performance_review_metadata_user_info">
+
+                                    <!-- performance review from user -->
+                                    <%= need_to_review_list[index].for.email %>
+
+                                        <div id="down_arrow" class="text_content_center">
+                                            <img src="https://png.pngtree.com/png-clipart/20190906/original/pngtree-down-arrow-png-image_4556532.jpg"
+                                                alt="down_arrow_image" height="30" width="30">
+                                        </div>
+
+                                        <!-- performance review to user -->
+                                        <%= need_to_review_list[index].to.email %>
+                                </div>
+
+                                <!-- performance review convert from review to done status -->
+                                <div id="performance_review_metadata_status_info-<%= need_to_review_list[index]._id %>"
+                                    class="performance_review_metadata_status_info text_content_center">
+
+                                    <button class="dropbtn">
+                                        <%= need_to_review_list[index].status %>
+                                    </button>
+                                </div>
+
+                            </a>
+
+                            <!-- performance creation form container -->
+                            <div id="add_performance_review_form_container-<%= need_to_review_list[index]._id %>"
+                                class="modal_container">
+
+                                <!-- add employee form -->
+                                <form id="add_performance_review_form"
+                                    action="/performance_review_metadata/create/<%= need_to_review_list[index]._id %>"
+                                    method="POST" class="modal">
+
+                                    <!-- form header -->
+                                    <header id="add_performance_review_form_header"
+                                        class="form_header text_content_center">
+                                        Provide performance review
+                                    </header>
+
+                                    <div id="close_cross_for_performance_review_employee"
+                                        data-review-metadata-id="<%= need_to_review_list[index]._id %>">
+                                        <img src="https://images.freeimages.com/fic/images/icons/766/base_software/256/close_box_red.png"
+                                            alt="close-cross-image" height="30" , width="30">
+                                    </div>
+
+                                    <section id="input_section" class="create_performance_review_form_input">
+                                        <!-- form inputs -->
+                                        <input type="email" name="fromUser" value="<%= locals.user.email %>"
+                                            placeholder="add from user email address" required class="plain_input" />
+                                        <input type="email" name="toUser"
+                                            value="<%= need_to_review_list[index].to.email %>"
+                                            placeholder="add to user email address" required class="plain_input" />
+                                        <input type="text" name="jobKnowledge" placeholder="Job knowledge out of 10"
+                                            required class="plain_input" />
+                                        <input type="text" name="workQuality" placeholder="Work quality out of 10"
+                                            required class="plain_input" />
+                                        <input type="text" name="productivity" placeholder="Productivity out of 10"
+                                            required class="plain_input" />
+                                        <input type="text" name="technicalSkills"
+                                            placeholder="Technical skills out of 10" required class="plain_input" />
+                                        <input type="text" name="work" placeholder="Work out of 10" required
+                                            class="plain_input" />
+                                        <input type="text" name="consistency" placeholder="Consistency out of 10"
+                                            required class="plain_input" />
+                                        <input type="text" name="attitude" placeholder="Attitude out of 10" required
+                                            class="plain_input" />
+                                        <input type="text" name="attendance" placeholder="Attendance out of 10" required
+                                            class="plain_input" />
+                                        <input type="submit" value="Create pr" id="create_performance_review_button"
+                                            class="create_pr_button" />
+                                    </section>
+
+                                </form>
+
+                            </div>
+                            <!-- </a> -->
+                        </li>
+                        <% } %>
+                </ul>
+                <% } %>
+
+        </section>
+
+        <!-- Performance review list -->
+        <section id="performance_review_list" class="list_container">
+
+            <!-- performance_review_list header -->
+            <header id="performance_review_list_header" class="list_container_header">
+
+                <!-- performance_review header inforation -->
+                <div class="list_header_information text_content_center">
+                    Performance_reviews already done
+                </div>
+
+            </header>
+
+            <!-- already reviewed by the user -->
+            <% if(already_reviewed_list) { %>
+                <ul id="performance_review_metadata_list" class="list_elements">
+                    <% for (let index=0; index < already_reviewed_list.length; index++) { %>
+                        <li id="performance_review_metadata_info-container-<%= already_reviewed_list[index]._id %>"
+                            class="review_metadata_list_element"
+                            data-review_metadata-id="<%= already_reviewed_list[index]._id %>">
+
+                            <a href="/performance_review/<%= already_reviewed_list[index]._id %>"
+                                data-review-metadata-id="<%= already_reviewed_list[index]._id %>"
+                                id="view_performance_review_link">
+                                <!-- performance review metadata date inforamtion -->
+                                <!-- performance review metadata user inforamtion -->
+                                <div id="performance_review_metadata_user_info-<%= already_reviewed_list[index]._id %>"
+                                    class="performance_review_metadata_user_info">
+                                    <!-- performance review from user -->
+                                    <%= already_reviewed_list[index].for.email %>
+
+                                        <div id="down_arrow" class="text_content_center">
+                                            <img src="https://png.pngtree.com/png-clipart/20190906/original/pngtree-down-arrow-png-image_4556532.jpg"
+                                                alt="down_arrow_image" height="30" width="30">
+                                        </div>
+                                        <!-- performance review to user -->
+                                        <%= already_reviewed_list[index].to.email %>
+                                </div>
+
+                                <!-- performance review convert from review to done status -->
+                                <div id="performance_review_metadata_status_info-<%= already_reviewed_list[index]._id %>"
+                                    class="performance_review_metadata_status_info text_content_center">
+                                    <button class="dropbtn">
+                                        <%= already_reviewed_list[index].status %>
+                                    </button>
+                                </div>
+                            </a>
+
+                            <!-- </a> -->
+                        </li>
+                        <% } %>
+                </ul>
+                <% } %>
+
+
+
+
+
+        </section>
+
+    </section>

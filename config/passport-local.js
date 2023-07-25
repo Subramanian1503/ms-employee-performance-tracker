@@ -19,9 +19,6 @@ passport.use(
         if (user && user.password === password) {
           console.log(`*** Login successful ***`);
 
-          // Sending flash noty for user
-          request.flash("success", "User sign in successfully");
-
           return done(null, user);
         } else {
           // If not then done allow
