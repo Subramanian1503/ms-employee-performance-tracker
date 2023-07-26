@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
-require("dotenv").config();
 
 // Defining the mongoose connect url with host ip and database name
-mongoose.connect(process.env.DB_CONNECT_URL);
+mongoose.connect("mongodb+srv://admin:atlasadmin123@employee-performance-tr.phxxqrk.mongodb.net/?retryWrites=true&w=majority");
 
 // Getting the created connection using the mongo URL
 let connection = mongoose.connection;

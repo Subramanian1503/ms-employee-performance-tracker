@@ -4,10 +4,7 @@ const express = require("express");
 const application = express();
 
 // Declaring a port that can be used for the application
-// const SERVICE_PORT = 8080;
-
-// Initialing the dot env to store secrets
-require("dotenv").config();
+const SERVICE_PORT = 8080;
 
 // Setting up the request parser for express
 application.use(express.urlencoded());
@@ -40,15 +37,15 @@ const MongoStore = require("connect-mongo");
 // Initialize and configure express session as middle ware to save sessions
 application.use(
   express_session({
-    name: process.env.SESSION_NAME,
-    secret: process.env.SESSION_SECRET,
+    name: "employee_performance_tracker",
+    secret: "SecretToBeMaintainedForHandlingSession",
     saveUninitialized: false,
     resave: false,
     cookie: {
-      maxAge: parseInt(process.env.SESSION_EXPIRY_AGE),
+      maxAge: 10 * 60 * 60 * 1000,
     },
     store: MongoStore.create({
-      mongoUrl: process.env.SESSION_STORE_DB,
+      mongoUrl: "mongodb+srv://admin:atlasadmin123@employee-performance-tr.phxxqrk.mongodb.net/?retryWrites=true&w=majority",
     }),
   })
 );
@@ -71,7 +68,7 @@ const main_router = require("./router");
 application.use("/", main_router);
 
 // Definfing the application to start at service port 8080
-application.listen(process.env.SERVICE_PORT, (error) => {
+application.listen(SERVICE_PORT, (error) => {
   if (error) {
     console.log(
       `*** Error occured while trying to make the service up: ${error} ***`
@@ -79,6 +76,6 @@ application.listen(process.env.SERVICE_PORT, (error) => {
     return;
   }
   console.log(
-    `*** Employee performance tracker application started at port: ${process.env.SERVICE_PORT} ***`
+    `*** Employee performance tracker application started at port: ${SERVICE_PORT} ***`
   );
 });
