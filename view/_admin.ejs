@@ -291,7 +291,7 @@
                             <!-- performance review metadata user inforamtion -->
                             <a href="/performance_review/<%= review_metadata_list[index]._id %>"
                                 data-review-metadata-id="<%= review_metadata_list[index]._id %>"
-                                class="view_performance_review_link">
+                                class="view_performance_review_link_admin">
 
                                 <div id="performance_review_metadata_user_info-<%= review_metadata_list[index]._id %>"
                                     class="performance_review_metadata_user_info">
@@ -313,12 +313,9 @@
                                 <div id="performance_review_metadata_status_info-<%= review_metadata_list[index]._id %>"
                                     class="performance_review_metadata_status_info text_content_center">
 
-                                    <div class="dropdown">
-                                        <button class="dropbtn">
-                                            <%= review_metadata_list[index].status %>
-                                        </button>
-
-                                    </div>
+                                    <button class="dropbtn text_content_center">
+                                        <%= review_metadata_list[index].status %>
+                                    </button>
                                 </div>
                             </a>
 
@@ -328,15 +325,31 @@
 
                                 <!-- form to show the current information and update the values -->
                                 <form
-                                    action="/performance_review/update/<%= review_metadata_list[index]._id%>?update_status=DONE"
+                                    action="/performance_review_metadata/update/<%= review_metadata_list[index]._id%>?update_status=DONE"
                                     method="get" class="modal">
 
-                                    <input type="email" name="fromUser"
-                                        value="<%= review_metadata_list[index].for.email%>" class="plain_input" />
-                                    <input type="email" name="toUser" value="<%= review_metadata_list[index].to.email%>"
-                                        class="plain_input" />
-                                    <input type="submit" value="Close" id="assign_performance_review_button"
-                                        class="create_pr_button" />
+                                    <!-- form header -->
+                                    <header id="add_employee_form_header" class="form_header text_content_center">
+                                        Update Employee details
+                                    </header>
+
+                                    <!-- close button for form creation -->
+                                    <div class="close_cross_for_update_performance_review_form"
+                                        data-review-metadata-id="<%= review_metadata_list[index]._id %>">
+                                        <img src="https://images.freeimages.com/fic/images/icons/766/base_software/256/close_box_red.png"
+                                            alt="close-cross-image" height="30" , width="30">
+                                    </div>
+
+                                    <div class="update_employee_form_input">
+                                        <input type="email" name="fromUser"
+                                            value="<%= review_metadata_list[index].for.email%>" class="plain_input"
+                                            readonly />
+                                        <input type="email" name="toUser"
+                                            value="<%= review_metadata_list[index].to.email%>" class="plain_input"
+                                            readonly />
+                                        <input type="submit" name="update_status" value="DONE"
+                                            id="assign_performance_review_button" class="create_pr_button" />
+                                    </div>
                                 </form>
 
                             </div>
@@ -381,7 +394,7 @@
                             <!-- performance review metadata date inforamtion -->
                             <a href="/performance_review/<%= assigned_review_metadata_list[index]._id %>"
                                 data-review-metadata-id="<%= assigned_review_metadata_list[index]._id %>"
-                                id="view_performance_review_link">
+                                class="view_performance_review_link_admin">
                                 <div id="performance_review_metadata_user_info-<%= assigned_review_metadata_list[index]._id %>"
                                     class="performance_review_metadata_user_info">
                                     <!-- performance review from user -->

@@ -101,6 +101,8 @@ module.exports.create_review_by_employee = async (request, response) => {
 
     reviewMetadata.save();
 
+    console.log(`${reviewMetadata}`);
+
     // Send response
     return response.redirect("/employee");
 }

@@ -88,11 +88,31 @@
 
 /* utility classes */
 
+.view_performance_review_link_admin {
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+    color: black;
+    height: 100px;
+}
+
 .close_cross_for_update_form {
     position: fixed;
     top: 180px;
     left: 930px;
     cursor: pointer;
+}
+
+.close_cross_for_update_performance_review_form {
+    position: fixed;
+    top: 180px;
+    left: 930px;
+    cursor: pointer;
+}
+
+.update_employee_form_input {
+    display: flex;
+    flex-direction: column;
 }
 
 .employee_update_button {

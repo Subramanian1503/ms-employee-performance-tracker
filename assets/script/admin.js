@@ -163,6 +163,31 @@ $(document).ready(function () {
         $(`#employee_update_container-${employee_id}`).css("display", "none");
     })
 
+    // Script to open update performance review form when the element is clicked
+    $(".view_performance_review_link_admin").click((event) => {
+        // Prevent default behavior
+        event.preventDefault();
+
+        //Get the performance review id
+        const review_metadata_id = event.currentTarget.getAttribute("data-review-metadata-id");
+
+        // Get the update performance review status form
+        $(`#update_performance_review_form_container-${review_metadata_id}`).css("display", "block");
+    })
+
+    // close the update form when triggered
+    $(".close_cross_for_update_performance_review_form").click((event) => {
+
+        // prevent default
+        event.preventDefault();
+
+        //Get the performance review id
+        const review_metadata_id = event.currentTarget.getAttribute("data-review-metadata-id");
+
+        // Get the update performance review status form
+        $(`#update_performance_review_form_container-${review_metadata_id}`).css("display", "none");
+    })
+
     // Script to create employee for admin
     $("#add_employee_form").submit((event) => {
         // Prevent the default behvaiour

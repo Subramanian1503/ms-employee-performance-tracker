@@ -35,7 +35,7 @@
 
                             <a href="/performance_review/<%= need_to_review_list[index]._id %>"
                                 data-review-metadata-id="<%= need_to_review_list[index]._id %>"
-                                id="view_performance_review_link">
+                                id="view_performance_review_link_employee">
 
                                 <div id="performance_review_metadata_user_info-<%= need_to_review_list[index]._id %>"
                                     class="performance_review_metadata_user_info">
@@ -145,7 +145,7 @@
 
                             <a href="/performance_review/<%= already_reviewed_list[index]._id %>"
                                 data-review-metadata-id="<%= already_reviewed_list[index]._id %>"
-                                id="view_performance_review_link">
+                                id="view_performance_review_link_employee">
                                 <!-- performance review metadata date inforamtion -->
                                 <!-- performance review metadata user inforamtion -->
                                 <div id="performance_review_metadata_user_info-<%= already_reviewed_list[index]._id %>"
@@ -175,10 +175,6 @@
                         <% } %>
                 </ul>
                 <% } %>
-
-
-
-
 
         </section>
 
